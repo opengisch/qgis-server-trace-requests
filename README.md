@@ -1,2 +1,3 @@
 # qgis-server-trace-requests
-QGIS server plugin to trace requests
+
+A QGIS server plugin to trace requests.

@@ -1,0 +1,19 @@
+[general]
+name=Trace Requests
+qgisMinimumVersion=3.16
+description=A QGIS server plugin to trace requests.
+version=0.0.1
+author=Damiano Lombardi (OPENGIS.ch)
+email=damiano@opengis.ch
+server=True
+
+about=A QGIS server plugin to trace requests. Check the readme for a quick start guide https://github.com/opengisch/qgis-server-trace-requests/blob/master/README.md .
+
+tracker=https://github.com/opengisch/qgis-server-trace-requests/issues
+repository=https://github.com/opengisch/qgis-server-trace-requests
+tags=server, debug
+homepage=https://github.com/opengisch/qgis-server-trace-requests
+category=Plugins
+icon=icon.png
+experimental=False
+deprecated=False
