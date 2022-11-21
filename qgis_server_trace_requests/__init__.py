@@ -15,7 +15,7 @@ def classFactory(iface):
             QMessageBox.warning(
                 self.iface.mainWindow(),
                 "qgis_server_trace_requests plugin",
-                "qgis_server_trace_requests is a plugin for QGIS Server. There is nothing in QGIS Desktop.",
+                "qgis_server_trace_requests is a plugin for QGIS Server. It has no functionality in QGIS Desktop.",
             )
 
         def unload(self):
