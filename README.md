@@ -9,10 +9,9 @@ With this plugin installed, your QGIS server will be able to trace TCP/IP reques
 1. Download https://github.com/opengisch/qgis-server-trace-requests/archive/master.zip
 2. Unzip and copy the `qgis-server-trace-requests` folder to a local qgis server plugin path (check: metadata.txt must be in `[plugin_path]/qgis-server-trace-requests/metadata.txt`)
 3. Configure the local plugin path by setting it in apache, nginx, (your favorite webserver) `QGIS_PLUGINPATH=[plugin_path]`
-4. Optionally configure the trace files path, you have two possibilities:
+4. Optionally configure the trace files path, if not specified a temporary directory will be created. To configure it you have two possibilities:
    - Set the environment variable `QGIS_TRACEREQUESTS_FILESPATH=[trace_files_path]`.
    - Set it via network request (after server restart): `https://your-server.ch/?SERVICE=TRACE_REQUESTS&COMMAND=SET_FILES_PATH&PATH=[trace_files_path]`
-   If the paht is not specified a temporary directory will be created.
 5. Restart server
 
 ## Request
