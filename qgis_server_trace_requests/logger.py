@@ -1,6 +1,6 @@
 import os
 
-from PySide2.QtCore import QDateTime, QDir, QObject, qDebug
+from qgis.PyQt.QtCore import QDateTime, QDir, QObject, qDebug
 
 
 class Logger(QObject):
