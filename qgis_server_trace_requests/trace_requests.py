@@ -24,14 +24,10 @@ __copyright__ = "(C) 2022, Damiano Lombardi - OPENGIS.ch"
 import json
 import os
 
-from qgis.core import QgsMessageLog
+from qgis.core import QgsMessageLog, QgsSettingsEntryString
 from qgis.server import QgsServerFilter
 
 from .logger import Logger
-
-
-class ParameterError(Exception):
-    """A parameter exception that is raised will be forwarded to the client."""
 
 
 class TraceRequestsFilter(QgsServerFilter):
@@ -39,7 +35,14 @@ class TraceRequestsFilter(QgsServerFilter):
         if serverIface:
             super().__init__(serverIface)
 
-        self.trace_files_path = self.__get_path_from_env()
+        self.settings_entry_trace_files_path = QgsSettingsEntryString(
+            "TraceFilesPath", "TraceRequests", "", "Trace files path"
+        )
+
+        if self.settings_entry_trace_files_path.value():
+            self.trace_files_path = self.settings_entry_trace_files_path.value()
+        else:
+            self.trace_files_path = self.__get_path_from_env()
 
         self.logger = Logger()
         self.logger.set_filename("RequestsLog")
@@ -83,6 +86,8 @@ class TraceRequestsFilter(QgsServerFilter):
 
             elif command == "SET_PATH":
                 path = params.get("PATH", "")
+
+                self.settings_entry_trace_files_path.setValue(path)
 
                 self.trace_files_path = path
                 if not self.trace_files_path:
