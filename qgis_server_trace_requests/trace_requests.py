@@ -47,12 +47,12 @@ class TraceRequestsFilter(QgsServerFilter):
 
     def onRequestReady(self):
         request = self.serverInterface().requestHandler()
+        request_headers = request.requestHeaders()
         params = request.parameterMap()
 
-        QgsMessageLog.logMessage(f"onRequestReady {request} {params}")
-
-        self.logger.write_incoming(str(params))
-
+        self.logger.write_incoming(f"Url: {request.url()}")
+        self.logger.write_incoming(f"Headers: {request_headers}")
+        self.logger.write_incoming(f"Paremeters: {params}")
         return True
 
     def onResponseComplete(self):
@@ -61,7 +61,7 @@ class TraceRequestsFilter(QgsServerFilter):
 
         QgsMessageLog.logMessage(f"params: {params}")
 
-        # SERVICE=TRACEREQUESTPLUGIN -- we are taking over
+        # SERVICE=TRACE_REQUESTS -- we are taking over
         if params.get("SERVICE", "").upper() == "TRACE_REQUESTS":
 
             request.clear()
@@ -105,7 +105,8 @@ class TraceRequestsFilter(QgsServerFilter):
                     request.setResponseHeader("Content-type", "text/plain")
                     request.appendBody(content)
 
-        self.logger.write_outgoing(str(request.body()))
+        self.logger.write_outgoing(f"Headers: {request.responseHeaders()}")
+        self.logger.write_outgoing(f"Body: {request.body()}")
         return True
 
     def __get_path_from_env(self):

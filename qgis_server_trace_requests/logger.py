@@ -69,13 +69,8 @@ class Logger(QObject):
             qDebug(logText)
 
     def _write_to_file(self, log):
-
-        qDebug(f"_write_to_file before {self._logFileName} : {self._logFolderPath}")
-
         if not self._logFileName or not self._logFolderPath:
             return
-
-        qDebug("_write_to_file after")
 
         self._logLines += 1
         self._logFile.write(log + "\n")
